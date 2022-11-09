@@ -11,5 +11,5 @@ class ClaimSerializer(serializers.ModelSerializer):
 class ClaimFormSerializer(serializers.ModelSerializer):
     class Meta:
         model = Claim
-        fields = ['id', 'filename']
+        fields = ['filename']
 

@@ -27,10 +27,10 @@ class ClaimsViewSet(viewsets.ModelViewSet):
         """
         Return 
         """
-        file_obj = request.data['file']
+        file_obj = request.data['filename']
         print(file_obj)
 
-        return Response({})
+        return Response({"test": "hello"})
 
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
