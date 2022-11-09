@@ -14,7 +14,6 @@ class ClaimsViewSet(viewsets.ModelViewSet):
     * Require input file
     """
     permission_classes = [AllowAny]
-    parser_classes = (FileUploadParser,)
     queryset = Claim.objects.all()
     default_serializer_class = ClaimSerializer
     serializers_classes = {
