@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  claims:
+    build: .
+    container_name: claims
+    command: >
+      sh -c "pip3 install -r requirements.txt &&
+             pip3 install -r requirements-dev.txt &&
+             python3 manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000"
+volumes:
+  postgres_data:
