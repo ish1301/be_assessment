@@ -25,3 +25,6 @@ class Claim(models.Model):
             return True
 
         return True
+
+    def __str__(self) -> str:
+        return self.unique_id
