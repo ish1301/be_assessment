@@ -2,7 +2,25 @@ from django.db import models
 
 
 class Claim(models.Model):
+    id = models.CharField(primary_key=True, max_length=40)
     provider_fees = models.CharField(unique=True, max_length=150)
     member_coinsurance = models.CharField(max_length=255, blank=True, null=True)
     member_copay = models.CharField(max_length=20, blank=True, null=True)
     allowed_fees = models.CharField(max_length=255, blank=True, null=True)
+
+    @property
+    def net_fee(self):
+        fees = (self.provider_fees + self.member_coinsurance + self.member_copay - self.allowed_fees)
+        return fees if fees > 0 else 0
+
+
+    """
+    Process payment with 3rd party and return boolean 
+    """
+    def process_payment(self):
+        if self.net_fee == 0:
+            # process payment with payment gateway
+            # or raise error upon failure
+            return True
+
+        return True
