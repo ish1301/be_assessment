@@ -19,9 +19,9 @@ from rest_framework import routers
 from claims import views
 
 router = routers.DefaultRouter()
+router.register('claims', views.ClaimsViewSet, basename='claims'),
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('claims/', views.ProcessClaim.as_view(), name="process-claims"),
     path('admin/', admin.site.urls),
 ]
