@@ -1,8 +1,9 @@
+import uuid
 from django.db import models
 
 
 class Claim(models.Model):
-    id = models.CharField(primary_key=True, max_length=40)
+    unique_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     provider_fees = models.CharField(unique=True, max_length=150)
     member_coinsurance = models.CharField(max_length=255, blank=True, null=True)
     member_copay = models.CharField(max_length=20, blank=True, null=True)
