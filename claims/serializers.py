@@ -13,3 +13,8 @@ class ClaimFormSerializer(serializers.ModelSerializer):
         model = Claim
         fields = ['filename']
 
+    def validate_filename(self, value):
+        """
+        Check that the blog post is about Django.
+        """
+        raise serializers.ValidationError("Invalid file")
