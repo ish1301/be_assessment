@@ -4,7 +4,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework import viewsets
 
 from claims.models import Claim
-from claims.serializers import ClaimSerializer
+from claims.serializers import ClaimFormSerializer, ClaimSerializer
 
 
 class ClaimsViewSet(viewsets.ModelViewSet):
@@ -15,8 +15,14 @@ class ClaimsViewSet(viewsets.ModelViewSet):
     """
     permission_classes = [AllowAny]
     parser_classes = (FileUploadParser,)
-    serializer_class = ClaimSerializer
     queryset = Claim.objects.all()
+    default_serializer_class = ClaimSerializer
+    serializers_classes = {
+        'create': ClaimFormSerializer,
+    }
+
+    def get_serializer_class(self):
+        return self.serializers_classes.get(self.action, self.default_serializer_class)
 
     def post(self, request):
         """
