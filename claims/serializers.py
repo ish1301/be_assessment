@@ -1,3 +1,4 @@
+import csv
 from rest_framework import serializers
 from rest_framework.serializers import FileField
 
@@ -15,6 +16,13 @@ class ClaimFormSerializer(serializers.ModelSerializer):
 
     def validate_filename(self, value):
         """
-        Check that the blog post is about Django.
+        Validate CSV file for integrity and return true
         """
+
         raise serializers.ValidationError("Invalid file")
+
+    def create(self, validated_data):
+        """
+        Create claims as you have already validated data upto here
+        """
+        pass
